@@ -617,3 +617,797 @@
     .stats-scroll{
       margin-top:-15px;padding:0 10px;
       overflow:visible;max-width:100%;
+    }
+    .stats-track{
+      display:grid!important;
+      grid-template-columns:repeat(5,1fr)!important;
+      gap:6px;min-width:auto!important;
+    }
+    .stat-card{padding:8px;min-width:auto!important;border-radius:8px}
+    .stat-value{font-size:13px}
+    .stat-label{font-size:8px}
+    .stat-sub{font-size:8px}
+    .section{padding:16px 10px;page-break-inside:auto}
+    .section-header{page-break-after:avoid;padding-bottom:10px;margin-bottom:14px}
+    .section-num{width:32px;height:32px;font-size:12px;border-radius:8px}
+    .section-title{font-size:16px}
+    .section-title-en{font-size:8px}
+    .card,.chart-card,.table-wrap,.gantt,.callout{
+      box-shadow:none;border:1px solid #d0d0d0;
+      page-break-inside:avoid;margin-bottom:10px;
+      border-radius:8px;
+    }
+    .card{padding:12px}
+    .card-title{font-size:12px;margin-bottom:8px}
+    .chart-box{height:180px!important;page-break-inside:avoid}
+    canvas{max-width:100%!important;height:auto!important}
+
+    thead{display:table-header-group}
+    table{font-size:8.5px;width:100%}
+    thead th{
+      background:linear-gradient(135deg,var(--navy),var(--navy-2))!important;
+      color:#fff!important;padding:5px 6px;font-size:8px;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+    tbody tr{display:table-row!important;padding:0!important;background:#fff!important}
+    tbody td{
+      display:table-cell!important;
+      padding:4px 6px!important;
+      font-size:8.5px;text-align:left!important;
+      border-bottom:1px solid #e0e0e0;
+    }
+    tbody td::before{display:none!important}
+    td.num{text-align:right!important}
+    tbody tr:nth-child(even){background:#fafbfc!important}
+    tr,td,th{page-break-inside:avoid}
+
+    .risk-list{display:none!important}
+    .risk-table-desktop{display:block!important}
+    .risk-row{padding:6px;font-size:9px;grid-template-columns:1.5fr .8fr .8fr 2.5fr}
+    .risk-head{font-size:9px}
+
+    .gantt{padding:10px}
+    .gantt-grid{grid-template-columns:120px repeat(6,1fr);font-size:8px;min-width:auto!important}
+    .gantt-grid > div{padding:4px 3px;min-height:auto!important}
+    .gantt-head{font-size:8px;min-height:auto!important}
+    .gantt-bar{height:14px;font-size:7px}
+
+    .disclaimer{padding:12px;font-size:9.5px}
+    .footer{padding:20px 14px;page-break-inside:avoid}
+    .footer h3{font-size:12px}
+    .footer p{font-size:9px}
+
+    thead th,.grand-total,.total-row,.gantt-head,.gantt-bar,
+    .section-num,.hero,.hero-badge,.pill,.callout,.risk-head,
+    .stat-card::before{
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+
+    #s8,#s10,#s12,#s14,#s16{page-break-before:always}
+    h1,h2,h3,h4{page-break-after:avoid}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ MOBILE TOP BAR ============ -->
+<header class="mobile-topbar">
+  <div class="mobile-logo">
+    <span class="mobile-logo-dot"></span>
+    कागेश्वरी परियोजना
+  </div>
+  <div class="mobile-actions">
+    <button class="mobile-icon-btn" onclick="window.print()" aria-label="PDF">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ FAB ============ -->
+<button class="download-fab" onclick="window.print()" aria-label="PDF डाउनलोड">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <polyline points="7 10 12 15 17 10"/>
+    <line x1="12" y1="15" x2="12" y2="3"/>
+  </svg>
+  <span class="fab-text">PDF</span>
+</button>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="pulse"></span> व्यावसायिक भवन प्रस्ताव</div>
+    <h1>५ तल्ले <span class="accent">व्यावसायिक कम्प्लेक्स</span><br>कागेश्वरी मनोहरा, वडा नं. ७</h1>
+    <p class="lede">मुलपानी–साँखु सडक क्षेत्रमा करिब २९ आना जग्गामा चरणबद्ध निर्माण रणनीति सहितको पूर्ण व्यावसायिक भवन परियोजना।</p>
+    <div class="hero-meta">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        वडा नं. ७
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        २९ आना
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l8-6 8 6v12"/></svg>
+        ५ तल्ला
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STATS ============ -->
+<div class="stats-scroll">
+  <div class="stats-track">
+    <div class="stat-card">
+      <div class="stat-label">कुल जग्गा</div>
+      <div class="stat-value">२९<small>आना</small></div>
+      <div class="stat-sub">करिब ९,९२५ sq.ft</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">निर्मित क्षेत्र</div>
+      <div class="stat-value">१४,८८७<small>sq.ft</small></div>
+      <div class="stat-sub">FAR १.५</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">कुल लागत</div>
+      <div class="stat-value">रु. ७.१५<small>करोड</small></div>
+      <div class="stat-sub">३ चरणमा</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">मासिक भाडा</div>
+      <div class="stat-value">रु. ८<small>लाख</small></div>
+      <div class="stat-sub">Base परिदृश्य</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">ROI (Base)</div>
+      <div class="stat-value">११.२<small>%</small></div>
+      <div class="stat-sub">Payback ८.९ वर्ष</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FINANCIAL SUMMARY SECTION ============ -->
+<section class="section reveal" id="financials" style="padding-top:20px;">
+  <div class="section-header">
+    <div class="section-num">००</div>
+    <div>
+      <div class="section-title">आर्थिक सारांश</div>
+      <div class="section-title-en">Financial Summary</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Operating Costs Card -->
+    <div class="card" style="border-top:3px solid var(--gold); background:linear-gradient(135deg, #fff, #fffbeb);">
+      <div class="card-title">
+        <span class="dot" style="background:var(--gold)"></span>
+        सञ्चालन खर्च (Operating Costs)
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>मद</th><th>वार्षिक (रु.)</th></tr></thead>
+          <tbody>
+            <tr><td data-label="मद">Maintenance &amp; Repairs</td><td data-label="वार्षिक" class="num">३,००,०००</td></tr>
+            <tr><td data-label="मद">Property Tax &amp; Municipal</td><td data-label="वार्षिक" class="num">२,४०,०००</td></tr>
+            <tr><td data-label="मद">Building Insurance</td><td data-label="वार्षिक" class="num">१,२०,०००</td></tr>
+            <tr><td data-label="मद">Staff Salaries</td><td data-label="वार्षिक" class="num">३,६०,०००</td></tr>
+            <tr><td data-label="मद">Common Area Utilities</td><td data-label="वार्षिक" class="num">१,५०,०००</td></tr>
+            <tr><td data-label="मद">Management Fees</td><td data-label="वार्षिक" class="num">१,५०,०००</td></tr>
+            <tr><td data-label="मद">Vacancy Allowance</td><td data-label="वार्षिक" class="num">२,८०,०००</td></tr>
+            <tr class="total-row"><td data-label="कुल">कुल OPEX</td><td data-label="वार्षिक" class="num">१६,००,०००</td></tr>
+            <tr class="grand-total"><td data-label="अनुपात">OPEX Ratio</td><td data-label="वार्षिक" class="num">16.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Income Summary Card -->
+    <div class="card" style="border-top:3px solid var(--teal); background:linear-gradient(135deg, #fff, #f0fdfa);">
+      <div class="card-title">
+        <span class="dot" style="background:var(--teal)"></span>
+        आय विवरण (Income Summary)
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>मद</th><th>वार्षिक (रु.)</th></tr></thead>
+          <tbody>
+            <tr><td data-label="मद">Gross Monthly Rent</td><td data-label="वार्षिक" class="num">८,००,०००</td></tr>
+            <tr><td data-label="मद">Gross Annual Income</td><td data-label="वार्षिक" class="num">९६,००,०००</td></tr>
+            <tr style="background:linear-gradient(90deg,#fef2f2,#fff)"><td data-label="मद">Less: Operating Costs</td><td data-label="वार्षिक" class="num">(१६,००,०००)</td></tr>
+            <tr class="total-row"><td data-label="शुद्ध आय">Net Operating Income</td><td data-label="वार्षिक" class="num">८०,००,०००</td></tr>
+            <tr><td data-label="मद">Cap Rate / ROI</td><td data-label="वार्षिक" class="num">11.2%</td></tr>
+            <tr><td data-label="मद">Payback Period</td><td data-label="वार्षिक" class="num">८.९ वर्ष</td></tr>
+            <tr class="grand-total"><td data-label="मद">Net Yield (Base)</td><td data-label="वार्षिक" class="num">9.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. EXECUTIVE SUMMARY ============ -->
+<section class="section reveal" id="s1">
+  <div class="section-header">
+    <div class="section-num">०१</div>
+    <div>
+      <div class="section-title">कार्यकारी सारांश</div>
+      <div class="section-title-en">Executive Summary</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="color:var(--muted)">
+      यो प्रस्ताव कागेश्वरी मनोहरा नगरपालिका, वडा नं. ७, काठमाडौं (मुलपानी–साँखु सडक क्षेत्र) मा अवस्थित करिब २९ आना (करिब ९,९२५ वर्ग फिट) जग्गामा <strong>५ तल्ले पूर्ण व्यावसायिक भवन</strong> निर्माण गर्ने सम्बन्धमा तयार पारिएको विस्तृत व्यावसायिक योजना हो।
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> मुख्य तथ्याङ्क</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>विवरण</th><th>मान</th></tr></thead>
+        <tbody>
+          <tr><td data-label="विवरण">स्थान</td><td data-label="मान">कागेश्वरी मनोहरा, वडा नं. ७</td></tr>
+          <tr><td data-label="विवरण">कुल जग्गा</td><td data-label="मान">२९ आना (९,९२५ sq.ft)</td></tr>
+          <tr><td data-label="विवरण">प्लट नम्बर</td><td data-label="मान">१३१९–१३२५</td></tr>
+          <tr><td data-label="विवरण">निर्माणको प्रकार</td><td data-label="मान">RCC Frame, ५ तल्ला</td></tr>
+          <tr><td data-label="विवरण">कुल निर्मित क्षेत्र</td><td data-label="मान">१४,८८७ sq.ft</td></tr>
+          <tr><td data-label="विवरण">ग्राउन्ड कभरेज</td><td data-label="मान">६०% (५,९५५ sq.ft)</td></tr>
+          <tr><td data-label="विवरण">कुल लागत</td><td data-label="मान"><strong>रु. ७,१४,८३,६०६</strong></td></tr>
+          <tr><td data-label="विवरण">मासिक भाडा</td><td data-label="मान">रु. ८–१० लाख</td></tr>
+          <tr><td data-label="विवरण">वार्षिक शुद्ध आय</td><td data-label="मान">रु. ८० लाख (Base)</td></tr>
+          <tr><td data-label="विवरण">ROI</td><td data-label="मान">८.४% – १४%</td></tr>
+          <tr><td data-label="विवरण">Payback</td><td data-label="मान">७–१२ वर्ष</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h4>चरण अनुसार लागत</h4>
+    <p class="chart-sub">Phase-wise Cost (रु. लाखमा)</p>
+    <div class="chart-box"><canvas id="chartPhaseCost"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h4>प्रतिफल परिदृश्य (ROI)</h4>
+    <p class="chart-sub">Conservative, Base र Optimistic</p>
+    <div class="chart-box"><canvas id="chartROI"></canvas></div>
+  </div>
+
+  <div class="callout">
+    <strong>सिफारिस:</strong> सबै प्लट मालपोतमा एकीकृत गरी Private Limited Company दर्ता गर्न, वकिल मार्फत Joint Venture Agreement गर्न, र नगरपालिकाबाट Planning Permit प्राप्त गर्न सिफारिस गरिन्छ।
+  </div>
+</section>
+
+<!-- ============ 2. BACKGROUND ============ -->
+<section class="section reveal" id="s2">
+  <div class="section-header">
+    <div class="section-num">०२</div>
+    <div>
+      <div class="section-title">पृष्ठभूमि र उद्देश्य</div>
+      <div class="section-title-en">Background & Objectives</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> पृष्ठभूमि</div>
+    <p style="color:var(--muted)">
+      काठमाडौं उपत्यकाको उत्तरी–पूर्वी क्षेत्रमा अवस्थित कागेश्वरी मनोहरा नगरपालिका द्रुत गतिमा सहरीकरण भइरहेको क्षेत्र हो। यस क्षेत्रमा बैंक, वित्तीय संस्था, क्लिनिक, कर्पोरेट कार्यालय र खुद्रा व्यापारको माग बढ्दो छ।
+    </p>
+    <p style="color:var(--muted);margin-top:10px">
+      हाल जग्गा संयुक्त पारिवारिक स्वामित्वमा छ। जग्गामा अस्थायी संरचना छ, जुन वार्षिक रु. १ लाखमा भाडामा दिइएको छ। यो आय न्यून भएकाले पूर्ण व्यावसायिक उपयोग गर्न यो परियोजना अघि सारिएको हो।
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> परियोजनाका उद्देश्यहरू</div>
+    <ol style="padding-left:20px;color:var(--muted);font-size:13.5px;line-height:2">
+      <li>जग्गाको अधिकतम व्यावसायिक उपयोग गरी दीर्घकालीन भाडा आय सिर्जना गर्नु।</li>
+      <li>परिवारका सबै सदस्यलाई समान रूपमा लाभान्वित गर्ने पारदर्शी साझेदारी संरचना निर्माण गर्नु।</li>
+      <li>कागेश्वरी मनोहरा नगरपालिकाको भवन निर्माण मापदण्ड २०७५ को पूर्ण पालना गर्नु।</li>
+      <li>चरणबद्ध निर्माण रणनीति अपनाई सुरुवाती पूँजी लगानीलाई व्यवस्थापनयोग्य बनाउनु।</li>
+      <li>स्थानीय रोजगारी सिर्जना र आर्थिक गतिविधिलाई प्रोत्साहन गर्नु।</li>
+      <li>नेपाल राष्ट्रिय भवन संहिता (NBC) अनुरूप भूकम्प प्रतिरोधी संरचना निर्माण गर्नु।</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 3. SITE ============ -->
+<section class="section reveal" id="s3">
+  <div class="section-header">
+    <div class="section-num">०३</div>
+    <div>
+      <div class="section-title">जग्गा विश्लेषण</div>
+      <div class="section-title-en">Site Analysis</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> भौतिक विवरण</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>विवरण</th><th>मान</th></tr></thead>
+        <tbody>
+          <tr><td data-label="विवरण">प्लट नम्बर</td><td data-label="मान">१३१९–१३२५ (७ प्लट)</td></tr>
+          <tr><td data-label="विवरण">कुल क्षेत्रफल</td><td data-label="मान">करिब २९ आना</td></tr>
+          <tr><td data-label="विवरण">जग्गाको आकार</td><td data-label="मान">अनियमित र असममित</td></tr>
+          <tr><td data-label="विवरण">सडक पहुँच</td><td data-label="मान">उत्तर-मुखी २० फिट</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> तल्ला अनुसार प्रयोग</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>तल्ला</th><th>प्रयोग</th><th>क्षेत्रफल (sq.ft)</th></tr></thead>
+        <tbody>
+          <tr><td data-label="तल्ला"><strong>भूमिगत</strong></td><td data-label="प्रयोग">पार्किङ</td><td data-label="क्षेत्रफल" class="num">५,९५५</td></tr>
+          <tr><td data-label="तल्ला"><strong>भुइँ</strong></td><td data-label="प्रयोग">४–५ पसल</td><td data-label="क्षेत्रफल" class="num">५,९५५</td></tr>
+          <tr><td data-label="तल्ला"><strong>पहिलो</strong></td><td data-label="प्रयोग">बेयरबोन अफिस</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
+          <tr><td data-label="तल्ला"><strong>दोस्रो</strong></td><td data-label="प्रयोग">अफिस/बैंक</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
+          <tr><td data-label="तल्ला"><strong>तेस्रो</strong></td><td data-label="प्रयोग">कर्पोरेट</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
+          <tr><td data-label="तल्ला"><strong>चौथो</strong></td><td data-label="प्रयोग">कर्पोरेट</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. PHASED ============ -->
+<section class="section reveal" id="s7">
+  <div class="section-header">
+    <div class="section-num">०७</div>
+    <div>
+      <div class="section-title">चरणबद्ध योजना</div>
+      <div class="section-title-en">Phased Construction Plan</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>चरण</th><th>समय</th><th>कार्य</th><th>लागत</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="चरण"><strong>Phase 1</strong></td>
+            <td data-label="समय">पहिलो वर्ष</td>
+            <td data-label="कार्य">Basement + Ground + Foundation</td>
+            <td data-label="लागत" class="num">रु. ३,४०,८३,६०६</td>
+          </tr>
+          <tr>
+            <td data-label="चरण"><strong>Phase 2</strong></td>
+            <td data-label="समय">तेस्रो–चौथो वर्ष</td>
+            <td data-label="कार्य">1st + 2nd Floor</td>
+            <td data-label="लागत" class="num">रु. १,५४,००,०००</td>
+          </tr>
+          <tr>
+            <td data-label="चरण"><strong>Phase 3</strong></td>
+            <td data-label="समय">पाँचौं–छैटौं वर्ष</td>
+            <td data-label="कार्य">3rd + 4th Floor</td>
+            <td data-label="लागत" class="num">रु. २,२०,००,०००</td>
+          </tr>
+          <tr class="grand-total">
+            <td colspan="3"><strong>कुल</strong></td>
+            <td class="num"><strong>रु. ७,१४,८३,६०६</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h4>चरण अनुसार लागत</h4>
+    <p class="chart-sub">रु. लाखमा</p>
+    <div class="chart-box"><canvas id="chartPhaseBar"></canvas></div>
+  </div>
+</section>
+
+<!-- ============ 8. BOQ ============ -->
+<section class="section reveal" id="s8">
+  <div class="section-header">
+    <div class="section-num">०८</div>
+    <div>
+      <div class="section-title">Phase 1 विस्तृत BOQ</div>
+      <div class="section-title-en">Detailed Bill of Quantities</div>
+    </div>
+  </div>
+
+  <div class="callout teal">
+    <strong>समावेश:</strong> निर्माण सामग्रीको सूक्ष्म विवरण (ईंटादेखि किलासम्म)।
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> निर्माण सामग्री दर</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>सामग्री</th><th>एकाइ</th><th>दर (रु.)</th></tr></thead>
+        <tbody>
+          <tr><td data-label="सामग्री">Cement (OPC 43)</td><td data-label="एकाइ">प्रति बोरा (50 kg)</td><td data-label="दर" class="num">७८०</td></tr>
+          <tr><td data-label="सामग्री">Sand (Coarse)</td><td data-label="एकाइ">प्रति cu.ft</td><td data-label="दर" class="num">७०</td></tr>
+          <tr><td data-label="सामग्री">Sand (Fine)</td><td data-label="एकाइ">प्रति cu.ft</td><td data-label="दर" class="num">६५</td></tr>
+          <tr><td data-label="सामग्री">Aggregate (20mm)</td><td data-label="एकाइ">प्रति cu.ft</td><td data-label="दर" class="num">६०</td></tr>
+          <tr><td data-label="सामग्री">Brick</td><td data-label="एकाइ">प्रति थान</td><td data-label="दर" class="num">२२</td></tr>
+          <tr><td data-label="सामग्री">Steel (TMT Fe500)</td><td data-label="एकाइ">प्रति kg</td><td data-label="दर" class="num">१०५</td></tr>
+          <tr><td data-label="सामग्री">Binding Wire</td><td data-label="एकाइ">प्रति kg</td><td data-label="दर" class="num">१२०</td></tr>
+          <tr><td data-label="सामग्री">Nails</td><td data-label="एकाइ">प्रति kg</td><td data-label="दर" class="num">१५०</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> Phase 1 कुल सारांश</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>खण्ड</th><th>विवरण</th><th>रकम (रु.)</th></tr></thead>
+        <tbody>
+          <tr><td data-label="खण्ड">A</td><td data-label="विवरण">प्रारम्भिक कार्य</td><td data-label="रकम" class="num">६,०५,०००</td></tr>
+          <tr><td data-label="खण्ड">B</td><td data-label="विवरण">माटो उत्खनन</td><td data-label="रकम" class="num">२४,२१,२७०</td></tr>
+          <tr><td data-label="खण्ड">C</td><td data-label="विवरण">PCC कार्य</td><td data-label="रकम" class="num">४,६५,६२०</td></tr>
+          <tr><td data-label="खण्ड">D</td><td data-label="विवरण">RCC कार्य</td><td data-label="रकम" class="num">१,४३,८९,०७५</td></tr>
+          <tr><td data-label="खण्ड">E</td><td data-label="विवरण">ईंटाको काम</td><td data-label="रकम" class="num">१५,६०,०००</td></tr>
+          <tr><td data-label="खण्ड">F</td><td data-label="विवरण">प्लास्टरिङ</td><td data-label="रकम" class="num">१०,००,०००</td></tr>
+          <tr><td data-label="खण्ड">G</td><td data-label="विवरण">फ्लोरिङ</td><td data-label="रकम" class="num">११,६६,५००</td></tr>
+          <tr><td data-label="खण्ड">H</td><td data-label="विवरण">ढोका, झ्याल, शटर</td><td data-label="रकम" class="num">७,६५,०००</td></tr>
+          <tr><td data-label="खण्ड">I</td><td data-label="विवरण">प्लम्बिङ</td><td data-label="रकम" class="num">१०,००,०००</td></tr>
+          <tr><td data-label="खण्ड">J</td><td data-label="विवरण">विद्युतीय</td><td data-label="रकम" class="num">२१,८०,०००</td></tr>
+          <tr><td data-label="खण्ड">K–O</td><td data-label="विवरण">अन्य</td><td data-label="रकम" class="num">३९,५७,१५०</td></tr>
+          <tr class="total-row"><td colspan="2" data-label="उप-जम्मा">उप-जम्मा</td><td data-label="रकम" class="num">२,९३,०९,६१५</td></tr>
+          <tr class="total-row"><td colspan="2" data-label="Contingency">Contingency (10%)</td><td data-label="रकम" class="num">२९,३०,९६२</td></tr>
+          <tr class="total-row"><td colspan="2" data-label="Consultancy">Consultancy (5%)</td><td data-label="रकम" class="num">१६,१२,०२९</td></tr>
+          <tr class="grand-total"><td colspan="2" data-label="Phase 1 कुल"><strong>Phase 1 कुल</strong></td><td data-label="रकम" class="num"><strong>३,३८,५२,६०६</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. ROI ============ -->
+<section class="section reveal" id="s10">
+  <div class="section-header">
+    <div class="section-num">१०</div>
+    <div>
+      <div class="section-title">भाडा आय र प्रतिफल</div>
+      <div class="section-title-en">Rental Income & ROI</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h4>वार्षिक आय तुलना</h4>
+    <p class="chart-sub">परिदृश्य अनुसार (रु. लाखमा)</p>
+    <div class="chart-box"><canvas id="chartIncome"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h4>Payback Period</h4>
+    <p class="chart-sub">वर्षमा</p>
+    <div class="chart-box"><canvas id="chartPayback"></canvas></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> परिदृश्य विश्लेषण</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>परिदृश्य</th><th>मासिक भाडा</th><th>वार्षिक आय</th><th>शुद्ध आय</th><th>ROI</th><th>Payback</th></tr></thead>
+        <tbody>
+          <tr><td data-label="परिदृश्य">Conservative</td><td data-label="मासिक" class="num">रु. ६ लाख</td><td data-label="वार्षिक" class="num">रु. ७२ लाख</td><td data-label="शुद्ध" class="num">रु. ६० लाख</td><td data-label="ROI" class="num">८.४%</td><td data-label="Payback" class="num">११.९ वर्ष</td></tr>
+          <tr style="background:linear-gradient(90deg,#fffbeb,#fff)"><td data-label="परिदृश्य"><strong>Base</strong></td><td data-label="मासिक" class="num">रु. ८ लाख</td><td data-label="वार्षिक" class="num">रु. ९६ लाख</td><td data-label="शुद्ध" class="num">रु. ८० लाख</td><td data-label="ROI" class="num">११.२%</td><td data-label="Payback" class="num">८.९ वर्ष</td></tr>
+          <tr><td data-label="परिदृश्य">Optimistic</td><td data-label="मासिक" class="num">रु. १० लाख</td><td data-label="वार्षिक" class="num">रु. १.२ करोड</td><td data-label="शुद्ध" class="num">रु. १ करोड</td><td data-label="ROI" class="num">१४.०%</td><td data-label="Payback" class="num">७.१ वर्ष</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14. RISK ============ -->
+<section class="section reveal" id="s14">
+  <div class="section-header">
+    <div class="section-num">१४</div>
+    <div>
+      <div class="section-title">जोखिम विश्लेषण</div>
+      <div class="section-title-en">Risk Analysis</div>
+    </div>
+  </div>
+
+  <div class="risk-list">
+    <div class="risk-card">
+      <div class="risk-card-head">
+        <div class="risk-card-title">निर्माण लागत वृद्धि</div>
+        <div class="risk-card-pills"><span class="pill pill-high">उच्च</span><span class="pill pill-high">उच्च</span></div>
+      </div>
+      <div class="risk-card-body">१०–१५% कन्टिन्जेन्सी बजेट; चरणबद्ध निर्माण; सामग्रीको मूल्य अनुगमन</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-card-head">
+        <div class="risk-card-title">भाडावाला नपाउने</div>
+        <div class="risk-card-pills"><span class="pill pill-med">मध्यम</span><span class="pill pill-high">उच्च</span></div>
+      </div>
+      <div class="risk-card-body">लचिलो भाडा दर; बहु-प्रयोग डिजाइन; प्रभावकारी मार्केटिङ</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-card-head">
+        <div class="risk-card-title">पारिवारिक विवाद</div>
+        <div class="risk-card-pills"><span class="pill pill-med">मध्यम</span><span class="pill pill-high">उच्च</span></div>
+      </div>
+      <div class="risk-card-body">स्पष्ट लिखित सम्झौता; पारदर्शी लेखा; नियमित बैठक</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-card-head">
+        <div class="risk-card-title">माटोको अवस्था</div>
+        <div class="risk-card-pills"><span class="pill pill-med">मध्यम</span><span class="pill pill-high">उच्च</span></div>
+      </div>
+      <div class="risk-card-body">अनिवार्य माटो परीक्षण; उपयुक्त जगको डिजाइन</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16. CONCLUSION ============ -->
+<section class="section reveal" id="s16">
+  <div class="section-header">
+    <div class="section-num">१६</div>
+    <div>
+      <div class="section-title">निष्कर्ष र सिफारिस</div>
+      <div class="section-title-en">Conclusion</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span> निष्कर्ष</div>
+    <p style="color:var(--muted)">
+      यो व्यावसायिक भवन विकास परियोजना कागेश्वरी मनोहरा नगरपालिका, वडा नं. ७ को मुलपानी–साँखु सडक क्षेत्रमा अवस्थित करिब २९ आना जग्गामा ५ तल्ले पूर्ण व्यावसायिक भवन निर्माण गर्ने एक व्यवहार्य र आकर्षक योजना हो।
+    </p>
+  </div>
+
+  <div class="disclaimer">
+    <strong>अस्वीकरण (Disclaimer):</strong> यो प्रपोजल एक conceptual योजना हो। आधिकारिक नक्सा पास र निर्माणको लागि दर्ता भएको वास्तुकार र इन्जिनियरबाट प्रमाणित गर्नुपर्नेछ। यसमा उल्लेख गरिएका सबै तथ्याङ्क, लागत अनुमान, र समयतालिका प्रारम्भिक (Preliminary) हुन् र वास्तविक निर्माणको क्रममा परिवर्तन हुन सक्छन्।
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <h3>परियोजना</h3>
+        <p>५ तल्ले व्यावसायिक कम्प्लेक्स<br>कागेश्वरी मनोहरा नगरपालिका, वडा नं. ७<br>मुलपानी–साँखु सडक क्षेत्र, काठमाडौं</p>
+      </div>
+      <div>
+        <h3>तयार गरिएको</h3>
+        <p>बहुविषयक व्यावसायिक टोलीद्वारा<br>रियल इस्टेट, वास्तुकार, इन्जिनियर,<br>MEP, QS, वित्तीय र कानुनी सल्लाहकार</p>
+      </div>
+      <div>
+        <h3>प्रस्तुतीकरणको लागि</h3>
+        <p>परिवारका सदस्यहरू<br>सम्भावित लगानीकर्ताहरू<br>कागेश्वरी मनोहरा नगरपालिका</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © २०८१ | कागेश्वरी मनोहरा व्यावसायिक भवन परियोजना<br>
+      यो प्रपोजल conceptual योजना हो — आधिकारिक नक्सा पास र निर्माणको लागि दर्ता भएको वास्तुकार र इन्जिनियरबाट प्रमाणित गर्नुपर्नेछ।
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOTTOM NAV ============ -->
+<nav class="bottom-nav">
+  <a class="nav-item active" href="#s1" data-section="s1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12l9-9 9 9M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/>
+    </svg>
+    <span>सारांश</span>
+  </a>
+  <a class="nav-item" href="#s3" data-section="s3">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+    <span>जग्गा</span>
+  </a>
+  <a class="nav-item" href="#s8" data-section="s8">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4M9 11V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6M9 11h6M15 11h4a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-4M15 11V5a2 2 0 0 0-2-2"/>
+    </svg>
+    <span>BOQ</span>
+  </a>
+  <a class="nav-item" href="#s10" data-section="s10">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>
+    <span>आय</span>
+  </a>
+  <a class="nav-item" href="#s14" data-section="s14">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+    <span>जोखिम</span>
+  </a>
+</nav>
+
+<script>
+  // ============ SCROLL REVEAL ============
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ============ BOTTOM NAV ACTIVE STATE ============
+  const navItems = document.querySelectorAll('.nav-item');
+  const sections = document.querySelectorAll('section[id]');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.dataset.section === id);
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-60px 0px -50% 0px' });
+
+  sections.forEach(s => navObserver.observe(s));
+
+  // ============ AUTO DATA-LABELS ============
+  document.querySelectorAll('table').forEach(table => {
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+    if(headers.length === 0) return;
+    table.querySelectorAll('tbody tr').forEach(tr => {
+      const cells = tr.querySelectorAll('td');
+      if(cells.length === 1 && cells[0].hasAttribute('colspan')) return;
+      cells.forEach((td, i) => {
+        if(!td.hasAttribute('data-label') && headers[i]){
+          td.setAttribute('data-label', headers[i]);
+        }
+      });
+    });
+  });
+
+  // ============ CHARTS ============
+  Chart.defaults.font.family = "'Mukta','Inter',sans-serif";
+  Chart.defaults.font.size = 10;
+  Chart.defaults.color = '#5a6b80';
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxWidth = 8;
+  Chart.defaults.plugins.legend.labels.padding = 10;
+
+  new Chart(document.getElementById('chartPhaseCost'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Phase 1', 'Phase 2', 'Phase 3'],
+      datasets: [{
+        data: [340.83, 154, 220],
+        backgroundColor: ['#0d9488', '#c9a227', '#7c3aed'],
+        borderColor: '#fff', borderWidth: 3, hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: { legend: { position: 'bottom' } }
+    }
+  });
+
+  new Chart(document.getElementById('chartROI'), {
+    type: 'bar',
+    data: {
+      labels: ['Conservative', 'Base', 'Optimistic'],
+      datasets: [{
+        label: 'ROI (%)', data: [8.4, 11.2, 14.0],
+        backgroundColor: ['#0f2942', '#0d9488', '#c9a227'],
+        borderRadius: 8, barThickness: 40
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, max: 16, ticks: { callback: v => v + '%' }, grid: { color: '#eef2f7' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chartPhaseBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Phase 1', 'Phase 2', 'Phase 3'],
+      datasets: [{
+        label: 'लागत', data: [340.83, 154, 220],
+        backgroundColor: ['#0d9488', '#c9a227', '#7c3aed'],
+        borderRadius: 8, barThickness: 50
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => v + 'L' }, grid: { color: '#eef2f7' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chartIncome'), {
+    type: 'bar',
+    data: {
+      labels: ['Conservative', 'Base', 'Optimistic'],
+      datasets: [
+        { label: 'वार्षिक आय', data: [72, 96, 120], backgroundColor: '#0d9488', borderRadius: 6, barThickness: 22 },
+        { label: 'शुद्ध आय', data: [60, 80, 100], backgroundColor: '#c9a227', borderRadius: 6, barThickness: 22 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => v + 'L' }, grid: { color: '#eef2f7' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chartPayback'), {
+    type: 'line',
+    data: {
+      labels: ['Conservative', 'Base', 'Optimistic'],
+      datasets: [{
+        label: 'Payback (वर्ष)', data: [11.9, 8.9, 7.1],
+        borderColor: '#c9a227', backgroundColor: 'rgba(201,162,39,.15)',
+        borderWidth: 3, fill: true, tension: 0.35,
+        pointBackgroundColor: '#0f2942', pointBorderColor: '#fff',
+        pointBorderWidth: 2, pointRadius: 6, pointHoverRadius: 8
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => v + ' वर्ष' }, grid: { color: '#eef2f7' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // ============ PRINT ============
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('canvas').forEach(c => {
+      c.style.maxWidth = '100%';
+      c.style.height = 'auto';
+    });
+  });
+
+  // ============ SMOOTH NAV ============
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      if(target){
+        const offset = 70;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ============ TOUCH FEEDBACK ============
+  document.querySelectorAll('.card, .stat-card, .risk-card, .chart-card').forEach(el => {
+    el.addEventListener('touchstart', () => {
+      el.style.transition = 'transform .1s';
+      el.style.transform = 'scale(0.99)';
+    }, { passive: true });
+    el.addEventListener('touchend', () => {
+      el.style.transform = '';
+      setTimeout(() => { el.style.transition = ''; }, 150);
+    }, { passive: true });
+  });
+</script>
+</body>
+</html>
