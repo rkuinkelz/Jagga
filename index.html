@@ -9,7 +9,7 @@
 <title>व्यावसायिक भवन विकास प्रस्ताव | कागेश्वरी मनोहरा</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root{
@@ -119,6 +119,7 @@
     padding:calc(70px + var(--safe-top)) 20px 44px;
     overflow:hidden;
     margin-bottom:0;
+    min-height:520px;
   }
   .hero::before{
     content:'';position:absolute;inset:0;
@@ -127,12 +128,115 @@
       linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
     background-size:44px 44px;
     pointer-events:none;
+    z-index:1;
   }
-  .hero-inner{max-width:1100px;margin:0 auto;position:relative;text-align:center}
+
+  /* ============ HERO DATA BACKGROUND ============ */
+  .hero-data-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    padding:calc(60px + var(--safe-top)) 20px 40px;
+    opacity:0.13;
+    font-family:'JetBrains Mono','Inter',monospace;
+    font-size:9.5px;
+    line-height:1.6;
+    color:#e8f0f8;
+    pointer-events:none;
+    overflow:hidden;
+    letter-spacing:.2px;
+  }
+  .hero-data-col{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    min-width:0;
+  }
+  .hero-data-title{
+    font-family:'Inter',sans-serif;
+    font-weight:800;
+    font-size:9px;
+    letter-spacing:1.8px;
+    color:var(--gold-light);
+    margin-bottom:10px;
+    padding-bottom:6px;
+    border-bottom:1px solid rgba(201,162,39,.35);
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .hero-data-title::before{
+    content:'';
+    width:5px;height:5px;
+    background:var(--gold);
+    border-radius:1px;
+    flex-shrink:0;
+    box-shadow:0 0 6px var(--gold);
+  }
+  .hero-data-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:3px 0;
+    border-bottom:1px dashed rgba(255,255,255,.08);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .hero-data-row span:first-child{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color:rgba(232,240,248,.85);
+  }
+  .hero-data-row span:last-child{
+    color:#fff;
+    font-weight:500;
+    flex-shrink:0;
+  }
+  .hero-data-row.total{
+    font-weight:800;
+    color:var(--gold-light);
+    border-top:1.5px solid rgba(201,162,39,.5);
+    border-bottom:1.5px solid rgba(201,162,39,.5);
+    padding:6px 0;
+    margin-top:5px;
+  }
+  .hero-data-row.total span:first-child,
+  .hero-data-row.total span:last-child{
+    color:var(--gold-light);
+  }
+  .hero-data-row.highlight{
+    background:linear-gradient(90deg,rgba(13,148,136,.2),transparent);
+    padding:4px 6px;
+    margin:2px 0;
+    border-left:2px solid var(--teal-light);
+    border-bottom:none;
+    font-weight:700;
+  }
+  .hero-data-row.highlight span:last-child{
+    color:var(--teal-light);
+  }
+  .hero-data-row.neg span:last-child{
+    color:#fca5a5;
+  }
+
+  /* ============ HERO CONTENT ============ */
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:1100px;margin:0 auto;text-align:center;
+  }
   .hero-badge{
     display:inline-flex;align-items:center;gap:6px;
     padding:6px 14px;border-radius:100px;
-    background:rgba(201,162,39,.16);
+    background:rgba(201,162,39,.18);
+    backdrop-filter:blur(8px);
     border:1px solid rgba(201,162,39,.4);
     color:var(--gold-light);font-size:11px;font-weight:700;
     letter-spacing:.4px;margin-bottom:16px;
@@ -150,6 +254,7 @@
     font-size:clamp(22px,6vw,34px);
     font-weight:800;line-height:1.25;
     margin-bottom:12px;letter-spacing:-.3px;
+    text-shadow:0 2px 20px rgba(0,0,0,.35);
   }
   .hero h1 .accent{
     background:linear-gradient(135deg,var(--gold-light),var(--gold));
@@ -157,19 +262,21 @@
   }
   .hero p.lede{
     font-size:13px;
-    color:rgba(255,255,255,.8);
+    color:rgba(255,255,255,.85);
     max-width:600px;margin:0 auto 20px;font-weight:400;
     line-height:1.6;
+    text-shadow:0 1px 12px rgba(0,0,0,.3);
   }
   .hero-meta{
     display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
-    font-size:11px;color:rgba(255,255,255,.7);
+    font-size:11px;color:rgba(255,255,255,.75);
   }
   .hero-meta span{
     display:flex;align-items:center;gap:4px;
-    background:rgba(255,255,255,.08);
+    background:rgba(15,41,66,.6);
+    backdrop-filter:blur(8px);
     padding:5px 10px;border-radius:100px;
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.15);
   }
   .hero-meta svg{width:12px;height:12px;opacity:.85}
 
@@ -270,7 +377,7 @@
     .grid-3{grid-template-columns:repeat(3,1fr)}
   }
 
-  /* ============ TABLES → CARDS (MOBILE) ============ */
+  /* ============ TABLES → CARDS ============ */
   .table-wrap{
     border-radius:14px;
     border:1px solid var(--border);
@@ -279,10 +386,7 @@
     overflow:hidden;
     margin-bottom:4px;
   }
-  table{
-    width:100%;border-collapse:collapse;
-    font-size:13px;
-  }
+  table{width:100%;border-collapse:collapse;font-size:13px}
   thead{display:none}
   tbody tr{
     display:block;
@@ -319,11 +423,9 @@
     font-weight:600;
     color:var(--navy);
   }
-  /* Hide label cell if empty */
   tbody td:only-child{text-align:left}
   tbody td:only-child::before{content:'';display:none}
 
-  /* Special rows on mobile */
   tbody tr.total-row{
     background:linear-gradient(90deg,#fff8e6,#fff)!important;
   }
@@ -332,9 +434,7 @@
     border-top:1px dashed var(--gold);
     padding-top:8px;
   }
-  tbody tr.total-row td::before{
-    color:var(--navy);
-  }
+  tbody tr.total-row td::before{color:var(--navy)}
   tbody tr.total-row td:first-child{
     border-top:2px solid var(--gold);
     margin-top:4px;
@@ -349,14 +449,9 @@
     color:#fff!important;font-weight:700;
     border:none;
   }
-  tbody tr.grand-total td::before{
-    color:var(--gold-light)!important;
-  }
-  tbody tr.grand-total td.num{
-    color:var(--gold-light)!important;
-  }
+  tbody tr.grand-total td::before{color:var(--gold-light)!important}
+  tbody tr.grand-total td.num{color:var(--gold-light)!important}
 
-  /* Desktop: revert to normal table */
   @media(min-width:768px){
     thead{display:table-header-group}
     thead th{
@@ -427,11 +522,8 @@
   }
   .callout strong{color:var(--navy)}
 
-  /* ============ RISK CARDS (MOBILE) ============ */
-  .risk-list{
-    display:flex;flex-direction:column;
-    gap:10px;
-  }
+  /* ============ RISK ============ */
+  .risk-list{display:flex;flex-direction:column;gap:10px}
   .risk-card{
     background:#fff;border-radius:14px;
     border:1px solid var(--border);
@@ -446,15 +538,13 @@
     font-size:13px;font-weight:700;color:var(--navy);
     flex:1;
   }
-  .risk-card-pills{
-    display:flex;gap:4px;flex-shrink:0;
-  }
+  .risk-card-pills{display:flex;gap:4px;flex-shrink:0}
   .risk-card-body{
     font-size:12px;color:var(--muted);
     line-height:1.6;
   }
 
-  /* ============ GANTT (MOBILE) ============ */
+  /* ============ GANTT ============ */
   .gantt{
     background:#fff;border-radius:14px;
     border:1px solid var(--border);
@@ -462,7 +552,6 @@
     padding:12px;
     overflow-x:auto;
     -webkit-overflow-scrolling:touch;
-    scrollbar-width:thin;
   }
   .gantt-grid{
     display:grid;
@@ -555,7 +644,15 @@
     body{padding-bottom:0;font-size:15px}
     .mobile-topbar{display:none}
     .bottom-nav{display:none}
-    .hero{padding:60px 24px 80px}
+    .hero{padding:80px 24px 100px;min-height:620px}
+    .hero-data-bg{
+      font-size:11.5px;
+      gap:60px;
+      padding:100px 60px 60px;
+      opacity:0.14;
+    }
+    .hero-data-title{font-size:10px;letter-spacing:2.2px}
+    .hero h1{font-size:clamp(28px,4.5vw,52px)}
     .stats-scroll{
       margin-top:-60px;padding:0 24px;
       max-width:1200px;margin-left:auto;margin-right:auto;
@@ -589,7 +686,7 @@
     .risk-table-desktop{display:none!important}
   }
 
-  /* ============ RISK TABLE (DESKTOP ONLY) ============ */
+  /* ============ RISK TABLE (DESKTOP) ============ */
   .risk-row{
     display:grid;grid-template-columns:2fr 1fr 1fr 3fr;
     gap:12px;padding:14px;
@@ -616,8 +713,16 @@
     .hero{
       padding:24px 20px 40px;
       background:#0f2942!important;
+      min-height:auto;
       -webkit-print-color-adjust:exact;print-color-adjust:exact;
     }
+    .hero-data-bg{
+      font-size:7px;
+      padding:20px 16px;
+      opacity:0.16;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+    .hero-data-title{font-size:7px;letter-spacing:1.4px}
     .hero h1{font-size:22px}
     .hero p.lede{font-size:11px}
     .hero-meta{font-size:9px;gap:10px}
@@ -650,7 +755,6 @@
     .chart-box{height:180px!important;page-break-inside:avoid}
     canvas{max-width:100%!important;height:auto!important}
 
-    /* Tables revert to normal in print */
     thead{display:table-header-group}
     table{font-size:8.5px;width:100%}
     thead th{
@@ -728,6 +832,45 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero">
+
+  <!-- ============ FINANCIAL DATA BACKGROUND ============ -->
+  <div class="hero-data-bg" aria-hidden="true">
+
+    <!-- LEFT: OPERATING COSTS -->
+    <div class="hero-data-col">
+      <div class="hero-data-title">Operating Costs · वार्षिक</div>
+      <div class="hero-data-row"><span>Maintenance &amp; Repairs</span><span>3,00,000</span></div>
+      <div class="hero-data-row"><span>Property Tax &amp; Municipal</span><span>2,40,000</span></div>
+      <div class="hero-data-row"><span>Building Insurance</span><span>1,20,000</span></div>
+      <div class="hero-data-row"><span>Staff Salaries</span><span>3,60,000</span></div>
+      <div class="hero-data-row"><span>Common Area Utilities</span><span>1,50,000</span></div>
+      <div class="hero-data-row"><span>Management Fees</span><span>1,50,000</span></div>
+      <div class="hero-data-row"><span>Vacancy Allowance</span><span>2,80,000</span></div>
+      <div class="hero-data-row"><span>Misc. / Contingency</span><span>—</span></div>
+      <div class="hero-data-row total"><span>TOTAL OPEX</span><span>16,00,000</span></div>
+      <div class="hero-data-row"><span>OPEX Ratio</span><span>16.7%</span></div>
+      <div class="hero-data-row"><span>Cost per sq.ft</span><span>रु. 107</span></div>
+    </div>
+
+    <!-- RIGHT: INCOME SUMMARY -->
+    <div class="hero-data-col">
+      <div class="hero-data-title">Income Summary · वार्षिक</div>
+      <div class="hero-data-row"><span>Gross Monthly Rent</span><span>8,00,000</span></div>
+      <div class="hero-data-row"><span>Gross Annual Income</span><span>96,00,000</span></div>
+      <div class="hero-data-row neg"><span>Less: Operating Costs</span><span>(16,00,000)</span></div>
+      <div class="hero-data-row highlight"><span>NET OPERATING INCOME</span><span>80,00,000</span></div>
+      <div class="hero-data-row"><span>Cap Rate / ROI</span><span>11.2%</span></div>
+      <div class="hero-data-row"><span>Payback Period</span><span>8.9 वर्ष</span></div>
+      <div class="hero-data-row"><span>Total Investment</span><span>7,14,83,606</span></div>
+      <div class="hero-data-row"><span>NOI Margin</span><span>83.3%</span></div>
+      <div class="hero-data-row"><span>Yield on Cost</span><span>11.2%</span></div>
+      <div class="hero-data-row total"><span>NET YIELD (Base)</span><span>9.3%</span></div>
+      <div class="hero-data-row"><span>IRR (15 yr)</span><span>13.8%</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ HERO CONTENT ============ -->
   <div class="hero-inner">
     <div class="hero-badge"><span class="pulse"></span> व्यावसायिक भवन प्रस्ताव</div>
     <h1>५ तल्ले <span class="accent">व्यावसायिक कम्प्लेक्स</span><br>कागेश्वरी मनोहरा, वडा नं. ७</h1>
@@ -747,6 +890,7 @@
       </span>
     </div>
   </div>
+
 </header>
 
 <!-- ============ STATS ============ -->
@@ -796,6 +940,57 @@
     </p>
   </div>
 
+  <!-- ============ OPERATING COST & INCOME SHEET ============ -->
+  <div class="grid-2">
+
+    <!-- OPERATING COSTS CARD -->
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <div class="card-title">
+        <span class="dot" style="background:var(--gold)"></span>
+        सञ्चालन खर्च (Operating Costs)
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>मद</th><th>वार्षिक (रु.)</th></tr></thead>
+          <tbody>
+            <tr><td data-label="मद">Maintenance &amp; Repairs</td><td data-label="वार्षिक" class="num">३,००,०००</td></tr>
+            <tr><td data-label="मद">Property Tax &amp; Municipal</td><td data-label="वार्षिक" class="num">२,४०,०००</td></tr>
+            <tr><td data-label="मद">Building Insurance</td><td data-label="वार्षिक" class="num">१,२०,०००</td></tr>
+            <tr><td data-label="मद">Staff Salaries</td><td data-label="वार्षिक" class="num">३,६०,०००</td></tr>
+            <tr><td data-label="मद">Common Area Utilities</td><td data-label="वार्षिक" class="num">१,५०,०००</td></tr>
+            <tr><td data-label="मद">Management Fees</td><td data-label="वार्षिक" class="num">१,५०,०००</td></tr>
+            <tr><td data-label="मद">Vacancy Allowance</td><td data-label="वार्षिक" class="num">२,८०,०००</td></tr>
+            <tr class="total-row"><td data-label="कुल">कुल OPEX</td><td data-label="वार्षिक" class="num">१६,००,०००</td></tr>
+            <tr class="grand-total"><td data-label="अनुपात">OPEX Ratio</td><td data-label="वार्षिक" class="num">16.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- INCOME SUMMARY CARD -->
+    <div class="card" style="border-top:3px solid var(--teal)">
+      <div class="card-title">
+        <span class="dot" style="background:var(--teal)"></span>
+        आय विवरण (Income Summary)
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>मद</th><th>वार्षिक (रु.)</th></tr></thead>
+          <tbody>
+            <tr><td data-label="मद">Gross Monthly Rent</td><td data-label="वार्षिक" class="num">८,००,०००</td></tr>
+            <tr><td data-label="मद">Gross Annual Income</td><td data-label="वार्षिक" class="num">९६,००,०००</td></tr>
+            <tr style="background:linear-gradient(90deg,#fef2f2,#fff)"><td data-label="मद">Less: Operating Costs</td><td data-label="वार्षिक" class="num">(१६,००,०००)</td></tr>
+            <tr class="total-row"><td data-label="शुद्ध आय">Net Operating Income</td><td data-label="वार्षिक" class="num">८०,००,०००</td></tr>
+            <tr><td data-label="मद">Cap Rate / ROI</td><td data-label="वार्षिक" class="num">11.2%</td></tr>
+            <tr><td data-label="मद">Payback Period</td><td data-label="वार्षिक" class="num">८.९ वर्ष</td></tr>
+            <tr class="grand-total"><td data-label="मद">Net Yield (Base)</td><td data-label="वार्षिक" class="num">9.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
   <div class="card">
     <div class="card-title"><span class="dot"></span> मुख्य तथ्याङ्क</div>
     <div class="table-wrap">
@@ -810,7 +1005,7 @@
           <tr><td data-label="विवरण">ग्राउन्ड कभरेज</td><td data-label="मान">६०% (५,९५५ sq.ft)</td></tr>
           <tr><td data-label="विवरण">कुल लागत</td><td data-label="मान"><strong>रु. ७,१४,८३,६०६</strong></td></tr>
           <tr><td data-label="विवरण">मासिक भाडा</td><td data-label="मान">रु. ८–१० लाख</td></tr>
-          <tr><td data-label="विवरण">वार्षिक शुद्ध आय</td><td data-label="मान">रु. ९० लाख–१ करोड</td></tr>
+          <tr><td data-label="विवरण">वार्षिक शुद्ध आय</td><td data-label="मान">रु. ८० लाख (Base)</td></tr>
           <tr><td data-label="विवरण">ROI</td><td data-label="मान">८.४% – १४%</td></tr>
           <tr><td data-label="विवरण">Payback</td><td data-label="मान">७–१२ वर्ष</td></tr>
         </tbody>
@@ -866,22 +1061,6 @@
       <li>नेपाल राष्ट्रिय भवन संहिता (NBC) अनुरूप भूकम्प प्रतिरोधी संरचना निर्माण गर्नु।</li>
     </ol>
   </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> अपेक्षित लाभहरू</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>लाभ</th><th>विवरण</th></tr></thead>
-        <tbody>
-          <tr><td data-label="लाभ"><span class="pill pill-info">आर्थिक</span></td><td data-label="विवरण">वार्षिक रु. ९० लाख–१ करोड शुद्ध आय</td></tr>
-          <tr><td data-label="लाभ"><span class="pill pill-info">सामाजिक</span></td><td data-label="विवरण">स्थानीय रोजगारी सिर्जना</td></tr>
-          <tr><td data-label="लाभ"><span class="pill pill-info">परिवार</span></td><td data-label="विवरण">दीर्घकालीन पारिवारिक सम्पत्ति</td></tr>
-          <tr><td data-label="लाभ"><span class="pill pill-info">सहरी विकास</span></td><td data-label="विवरण">क्षेत्रको व्यावसायिक विकास</td></tr>
-          <tr><td data-label="लाभ"><span class="pill pill-info">कर राजस्व</span></td><td data-label="विवरण">सम्पत्ति कर र व्यावसायिक कर</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </section>
 
 <!-- ============ 3. SITE ============ -->
@@ -903,30 +1082,9 @@
           <tr><td data-label="विवरण">प्लट नम्बर</td><td data-label="मान">१३१९–१३२५ (७ प्लट)</td></tr>
           <tr><td data-label="विवरण">कुल क्षेत्रफल</td><td data-label="मान">करिब २९ आना</td></tr>
           <tr><td data-label="विवरण">जग्गाको आकार</td><td data-label="मान">अनियमित र असममित</td></tr>
-          <tr><td data-label="विवरण">दायाँपट्टि</td><td data-label="मान">गहिरो कटआउट</td></tr>
-          <tr><td data-label="विवरण">बायाँपट्टि</td><td data-label="मान">४२ मिटर सिधा रेखा</td></tr>
-          <tr><td data-label="विवरण">तलपट्टि सीमा</td><td data-label="मान">१५.५ मिटर</td></tr>
-          <tr><td data-label="विवरण">माथिपट्टि सीमा</td><td data-label="मान">१६.५ मिटर</td></tr>
           <tr><td data-label="विवरण">सडक पहुँच</td><td data-label="मान">उत्तर-मुखी २० फिट</td></tr>
         </tbody>
       </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> सेटब्याक विश्लेषण</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>प्रकार</th><th>न्यूनतम</th><th>यस परियोजनामा</th></tr></thead>
-        <tbody>
-          <tr><td data-label="प्रकार">अगाडि</td><td data-label="न्यूनतम" class="num">३ मिटर</td><td data-label="यस परियोजनामा" class="num">३ मिटर</td></tr>
-          <tr><td data-label="प्रकार">छेउ</td><td data-label="न्यूनतम" class="num">१.५–२ मिटर</td><td data-label="यस परियोजनामा" class="num">२ मिटर</td></tr>
-          <tr><td data-label="प्रकार">पछाडि</td><td data-label="न्यूनतम" class="num">१.५–२ मिटर</td><td data-label="यस परियोजनामा" class="num">२ मिटर</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="callout teal" style="margin-top:12px">
-      <strong>नोट:</strong> जग्गाको अनियमित आकारका कारण सेटब्याक योजनामा वास्तुकारको विशेष ध्यान आवश्यक।
     </div>
   </div>
 
@@ -936,148 +1094,12 @@
       <table>
         <thead><tr><th>तल्ला</th><th>प्रयोग</th><th>क्षेत्रफल (sq.ft)</th></tr></thead>
         <tbody>
-          <tr><td data-label="तल्ला"><strong>भूमिगत</strong></td><td data-label="प्रयोग">पार्किङ (FAR छुट)</td><td data-label="क्षेत्रफल" class="num">५,९५५</td></tr>
-          <tr><td data-label="तल्ला"><strong>भुइँ</strong></td><td data-label="प्रयोग">४–५ व्यावसायिक पसल</td><td data-label="क्षेत्रफल" class="num">५,९५५</td></tr>
+          <tr><td data-label="तल्ला"><strong>भूमिगत</strong></td><td data-label="प्रयोग">पार्किङ</td><td data-label="क्षेत्रफल" class="num">५,९५५</td></tr>
+          <tr><td data-label="तल्ला"><strong>भुइँ</strong></td><td data-label="प्रयोग">४–५ पसल</td><td data-label="क्षेत्रफल" class="num">५,९५५</td></tr>
           <tr><td data-label="तल्ला"><strong>पहिलो</strong></td><td data-label="प्रयोग">बेयरबोन अफिस</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
-          <tr><td data-label="तल्ला"><strong>दोस्रो</strong></td><td data-label="प्रयोग">अफिस/बैंक/क्लिनिक</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
-          <tr><td data-label="तल्ला"><strong>तेस्रो</strong></td><td data-label="प्रयोग">कर्पोरेट स्पेस</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
-          <tr><td data-label="तल्ला"><strong>चौथो</strong></td><td data-label="प्रयोग">कर्पोरेट स्पेस</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 4. DESIGN ============ -->
-<section class="section reveal" id="s4">
-  <div class="section-header">
-    <div class="section-num">०४</div>
-    <div>
-      <div class="section-title">भवन डिजाइन</div>
-      <div class="section-title-en">Building Design</div>
-    </div>
-  </div>
-
-  <div class="grid-3">
-    <div style="background:linear-gradient(135deg,#f0fdfa,#fff);padding:16px;border-radius:14px;border:1px solid #99f6e4">
-      <div style="font-weight:700;color:var(--teal);font-size:13px;margin-bottom:8px">भुइँ तल्ला</div>
-      <ul style="padding-left:18px;font-size:12.5px;color:var(--muted);line-height:1.9">
-        <li>४–५ वटा पसल</li>
-        <li>प्रत्येक: ८००–१,००० sq.ft</li>
-        <li>Rolling Shutter</li>
-        <li>लिफ्ट शाफ्ट ६×६ फिट</li>
-        <li>मुख्य भर्याङ ४ फिट</li>
-      </ul>
-    </div>
-    <div style="background:linear-gradient(135deg,#eff6ff,#fff);padding:16px;border-radius:14px;border:1px solid #bfdbfe">
-      <div style="font-weight:700;color:#1e40af;font-size:13px;margin-bottom:8px">पहिलो तल्ला</div>
-      <ul style="padding-left:18px;font-size:12.5px;color:var(--muted);line-height:1.9">
-        <li>खुला बेयरबोन अफिस</li>
-        <li>२,५००–३,००० sq.ft</li>
-        <li>लचिलो कोठा विभाजन</li>
-        <li>साझा शौचालय</li>
-      </ul>
-    </div>
-    <div style="background:linear-gradient(135deg,#fef3c7,#fff);padding:16px;border-radius:14px;border:1px solid #fde68a">
-      <div style="font-weight:700;color:#92400e;font-size:13px;margin-bottom:8px">दोस्रो–चौथो</div>
-      <ul style="padding-left:18px;font-size:12.5px;color:var(--muted);line-height:1.9">
-        <li>अफिस/बैंक/क्लिनिक</li>
-        <li>कर्पोरेट स्पेस</li>
-        <li>Fire Escape</li>
-        <li>लिफ्ट पहुँच</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 5. STRUCTURAL ============ -->
-<section class="section reveal" id="s5">
-  <div class="section-header">
-    <div class="section-num">०५</div>
-    <div>
-      <div class="section-title">संरचनात्मक रणनीति</div>
-      <div class="section-title-en">Structural Strategy</div>
-    </div>
-  </div>
-
-  <div class="callout red">
-    <strong>महत्त्वपूर्ण:</strong> यो संरचनात्मक रणनीति प्रारम्भिक हो। विस्तृत डिजाइन दर्ता भएको इन्जिनियरबाट प्रमाणित गराउनुपर्नेछ।
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> संरचनाको प्रकार</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>विवरण</th><th>मान</th></tr></thead>
-        <tbody>
-          <tr><td data-label="विवरण">प्रकार</td><td data-label="मान">RCC Frame Structure</td></tr>
-          <tr><td data-label="विवरण">डिजाइन कोड</td><td data-label="मान">NBC 105:2020</td></tr>
-          <tr><td data-label="विवरण">भवनको उचाई</td><td data-label="मान">१५.५ मिटर</td></tr>
-          <tr><td data-label="विवरण">तल्ला संख्या</td><td data-label="मान">५</td></tr>
-          <tr><td data-label="विवरण">भूकम्प क्षेत्र</td><td data-label="मान">Seismic Zone V</td></tr>
-          <tr><td data-label="विवरण">Importance Factor</td><td data-label="मान">1.0</td></tr>
-          <tr><td data-label="विवरण">Response Reduction</td><td data-label="मान">5.0 (OMRF)</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> संरचनात्मक सदस्यहरू</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>विवरण</th><th>मान</th></tr></thead>
-        <tbody>
-          <tr><td data-label="विवरण">स्तम्भको आकार</td><td data-label="मान" class="num">१२"×१८"</td></tr>
-          <tr><td data-label="विवरण">स्तम्भको दूरी</td><td data-label="मान" class="num">१५–२० फिट</td></tr>
-          <tr><td data-label="विवरण">बीमको आकार</td><td data-label="मान" class="num">१२"×१८"</td></tr>
-          <tr><td data-label="विवरण">स्ल्याबको मोटाई</td><td data-label="मान" class="num">५" (125 mm)</td></tr>
-          <tr><td data-label="विवरण">कंक्रीट ग्रेड</td><td data-label="मान" class="num">M20</td></tr>
-          <tr><td data-label="विवरण">स्टील ग्रेड</td><td data-label="मान" class="num">Fe500 TMT</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 6. MEP ============ -->
-<section class="section reveal" id="s6">
-  <div class="section-header">
-    <div class="section-num">०६</div>
-    <div>
-      <div class="section-title">MEP रणनीति</div>
-      <div class="section-title-en">Mechanical, Electrical & Plumbing</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> विद्युतीय प्रणाली</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>विवरण</th><th>योजना</th></tr></thead>
-        <tbody>
-          <tr><td data-label="विवरण">आपूर्ति</td><td data-label="योजना">NEA बाट ३-फेज</td></tr>
-          <tr><td data-label="विवरण">क्षमता</td><td data-label="योजना">१००–१५० kVA</td></tr>
-          <tr><td data-label="विवरण">वितरण</td><td data-label="योजना">प्रत्येक तलामा Sub-panel</td></tr>
-          <tr><td data-label="विवरण">प्रकाश</td><td data-label="योजना">LED</td></tr>
-          <tr><td data-label="विवरण">ब्याकअप</td><td data-label="योजना">Diesel Generator 50–60 kVA</td></tr>
-          <tr><td data-label="विवरण">Earthing</td><td data-label="योजना">Proper System</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> प्लम्बिङ प्रणाली</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>विवरण</th><th>योजना</th></tr></thead>
-        <tbody>
-          <tr><td data-label="विवरण">पानी आपूर्ति</td><td data-label="योजना">नगरपालिका + भूमिगत ट्याङ्की</td></tr>
-          <tr><td data-label="विवरण">भूमिगत ट्याङ्की</td><td data-label="योजना">१०,००० लिटर</td></tr>
-          <tr><td data-label="विवरण">ओभरहेड ट्याङ्की</td><td data-label="योजना">५,००० लिटर</td></tr>
-          <tr><td data-label="विवरण">Septic Tank</td><td data-label="योजना">५,००० लिटर</td></tr>
-          <tr><td data-label="विवरण">Rain Water Harvesting</td><td data-label="योजना">अनिवार्य</td></tr>
+          <tr><td data-label="तल्ला"><strong>दोस्रो</strong></td><td data-label="प्रयोग">अफिस/बैंक</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
+          <tr><td data-label="तल्ला"><strong>तेस्रो</strong></td><td data-label="प्रयोग">कर्पोरेट</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
+          <tr><td data-label="तल्ला"><strong>चौथो</strong></td><td data-label="प्रयोग">कर्पोरेट</td><td data-label="क्षेत्रफल" class="num">२,५००–३,०००</td></tr>
         </tbody>
       </table>
     </div>
@@ -1102,19 +1124,19 @@
           <tr>
             <td data-label="चरण"><strong>Phase 1</strong></td>
             <td data-label="समय">पहिलो वर्ष</td>
-            <td data-label="कार्य">Basement + Ground + Foundation + Lift Shaft</td>
+            <td data-label="कार्य">Basement + Ground + Foundation</td>
             <td data-label="लागत" class="num">रु. ३,४०,८३,६०६</td>
           </tr>
           <tr>
             <td data-label="चरण"><strong>Phase 2</strong></td>
             <td data-label="समय">तेस्रो–चौथो वर्ष</td>
-            <td data-label="कार्य">पहिलो तला (Barebone) + दोस्रो तला</td>
+            <td data-label="कार्य">1st + 2nd Floor</td>
             <td data-label="लागत" class="num">रु. १,५४,००,०००</td>
           </tr>
           <tr>
             <td data-label="चरण"><strong>Phase 3</strong></td>
             <td data-label="समय">पाँचौं–छैटौं वर्ष</td>
-            <td data-label="कार्य">तेस्रो र चौथो तला</td>
+            <td data-label="कार्य">3rd + 4th Floor</td>
             <td data-label="लागत" class="num">रु. २,२०,००,०००</td>
           </tr>
           <tr class="grand-total">
@@ -1123,9 +1145,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="callout" style="margin-top:12px">
-      <strong>रणनीति:</strong> भाडाबाट आएको आम्दानीले पछिल्लो चरणको निर्माण गर्ने — आत्म-वित्तीय निर्माण।
     </div>
   </div>
 
@@ -1164,199 +1183,13 @@
           <tr><td data-label="सामग्री">Steel (TMT Fe500)</td><td data-label="एकाइ">प्रति kg</td><td data-label="दर" class="num">१०५</td></tr>
           <tr><td data-label="सामग्री">Binding Wire</td><td data-label="एकाइ">प्रति kg</td><td data-label="दर" class="num">१२०</td></tr>
           <tr><td data-label="सामग्री">Nails</td><td data-label="एकाइ">प्रति kg</td><td data-label="दर" class="num">१५०</td></tr>
-          <tr><td data-label="सामग्री">Shuttering Plywood</td><td data-label="एकाइ">प्रति sq.ft</td><td data-label="दर" class="num">४५</td></tr>
-          <tr><td data-label="सामग्री">Water</td><td data-label="एकाइ">प्रति लिटर</td><td data-label="दर" class="num">०.५</td></tr>
-          <tr><td data-label="सामग्री">Labor (Skilled)</td><td data-label="एकाइ">प्रति दिन</td><td data-label="दर" class="num">१,२००</td></tr>
-          <tr><td data-label="सामग्री">Labor (Unskilled)</td><td data-label="एकाइ">प्रति दिन</td><td data-label="दर" class="num">७००</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="dot"></span> A. प्रारम्भिक कार्य</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>क्र.</th><th>विवरण</th><th>एकाइ</th><th>परिमाण</th><th>दर</th><th>रकम</th></tr></thead>
-        <tbody>
-          <tr><td data-label="क्र.">A1</td><td data-label="विवरण">Site Clearance</td><td data-label="एकाइ">LS</td><td data-label="परिमाण" class="num">1</td><td data-label="दर" class="num">१,५०,०००</td><td data-label="रकम" class="num">१,५०,०००</td></tr>
-          <tr><td data-label="क्र.">A2</td><td data-label="विवरण">Setting Out & Layout</td><td data-label="एकाइ">LS</td><td data-label="परिमाण" class="num">1</td><td data-label="दर" class="num">५०,०००</td><td data-label="रकम" class="num">५०,०००</td></tr>
-          <tr><td data-label="क्र.">A3</td><td data-label="विवरण">Temporary Fence</td><td data-label="एकाइ">ft</td><td data-label="परिमाण" class="num">400</td><td data-label="दर" class="num">२००</td><td data-label="रकम" class="num">८०,०००</td></tr>
-          <tr><td data-label="क्र.">A4</td><td data-label="विवरण">Site Office & Storage</td><td data-label="एकाइ">LS</td><td data-label="परिमाण" class="num">1</td><td data-label="दर" class="num">१,५०,०००</td><td data-label="रकम" class="num">१,५०,०००</td></tr>
-          <tr><td data-label="क्र.">A5</td><td data-label="विवरण">Temp. Water & Electricity</td><td data-label="एकाइ">LS</td><td data-label="परिमाण" class="num">1</td><td data-label="दर" class="num">७५,०००</td><td data-label="रकम" class="num">७५,०००</td></tr>
-          <tr><td data-label="क्र.">A6</td><td data-label="विवरण">Dewatering</td><td data-label="एकाइ">LS</td><td data-label="परिमाण" class="num">1</td><td data-label="दर" class="num">१,००,०००</td><td data-label="रकम" class="num">१,००,०००</td></tr>
-          <tr class="total-row"><td colspan="5" data-label="जम्मा">जम्मा</td><td data-label="रकम" class="num">६,०५,०००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> B. माटो उत्खनन</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>क्र.</th><th>विवरण</th><th>एकाइ</th><th>परिमाण</th><th>दर</th><th>रकम</th></tr></thead>
-        <tbody>
-          <tr><td data-label="क्र.">B1</td><td data-label="विवरण">Excavation (10 ft)</td><td data-label="एकाइ">cu.ft</td><td data-label="परिमाण" class="num">71,460</td><td data-label="दर" class="num">२२</td><td data-label="रकम" class="num">१५,७२,१२०</td></tr>
-          <tr><td data-label="क्र.">B2</td><td data-label="विवरण">Backfilling</td><td data-label="एकाइ">cu.ft</td><td data-label="परिमाण" class="num">15,000</td><td data-label="दर" class="num">१५</td><td data-label="रकम" class="num">२,२५,०००</td></tr>
-          <tr><td data-label="क्र.">B3</td><td data-label="विवरण">Disposal of Earth</td><td data-label="एकाइ">cu.ft</td><td data-label="परिमाण" class="num">56,460</td><td data-label="दर" class="num">१०</td><td data-label="रकम" class="num">५,६४,६००</td></tr>
-          <tr><td data-label="क्र.">B4</td><td data-label="विवरण">Compaction</td><td data-label="एकाइ">sq.ft</td><td data-label="परिमाण" class="num">5,955</td><td data-label="दर" class="num">१०</td><td data-label="रकम" class="num">५९,५५०</td></tr>
-          <tr class="total-row"><td colspan="5" data-label="जम्मा">जम्मा</td><td data-label="रकम" class="num">२४,२१,२७०</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> C. PCC कार्य (1:4:8)</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>क्र.</th><th>सामग्री</th><th>एकाइ</th><th>परिमाण</th><th>दर</th><th>रकम</th></tr></thead>
-        <tbody>
-          <tr><td data-label="क्र.">C1</td><td data-label="सामग्री">Cement</td><td data-label="एकाइ">बोरा</td><td data-label="परिमाण" class="num">295</td><td data-label="दर" class="num">७८०</td><td data-label="रकम" class="num">२,३०,१००</td></tr>
-          <tr><td data-label="क्र.">C2</td><td data-label="सामग्री">Sand</td><td data-label="एकाइ">cu.ft</td><td data-label="परिमाण" class="num">884</td><td data-label="दर" class="num">७०</td><td data-label="रकम" class="num">६१,८८०</td></tr>
-          <tr><td data-label="क्र.">C3</td><td data-label="सामग्री">Aggregate</td><td data-label="एकाइ">cu.ft</td><td data-label="परिमाण" class="num">1,769</td><td data-label="दर" class="num">६०</td><td data-label="रकम" class="num">१,०६,१४०</td></tr>
-          <tr><td data-label="क्र.">C4</td><td data-label="सामग्री">Water</td><td data-label="एकाइ">लिटर</td><td data-label="परिमाण" class="num">15,000</td><td data-label="दर" class="num">०.५</td><td data-label="रकम" class="num">७,५००</td></tr>
-          <tr><td data-label="क्र.">C5</td><td data-label="सामग्री">Labor</td><td data-label="एकाइ">दिन</td><td data-label="परिमाण" class="num">50</td><td data-label="दर" class="num">१,२००</td><td data-label="रकम" class="num">६०,०००</td></tr>
-          <tr class="total-row"><td colspan="5" data-label="जम्मा">जम्मा</td><td data-label="रकम" class="num">४,६५,६२०</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> D. RCC कार्य</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>विवरण</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">D1</td><td data-label="विवरण">Raft Foundation</td><td data-label="रकम" class="num">४३,८९,८५०</td></tr>
-          <tr><td data-label="खण्ड">D2</td><td data-label="विवरण">Columns (30 थान)</td><td data-label="रकम" class="num">९,४४,७४५</td></tr>
-          <tr><td data-label="खण्ड">D3</td><td data-label="विवरण">Beams (2 Levels)</td><td data-label="रकम" class="num">२९,७९,८८०</td></tr>
-          <tr><td data-label="खण्ड">D4</td><td data-label="विवरण">Slabs (2 Levels)</td><td data-label="रकम" class="num">३७,४७,३४०</td></tr>
-          <tr><td data-label="खण्ड">D5</td><td data-label="विवरण">Retaining Wall</td><td data-label="रकम" class="num">२०,०९,८९०</td></tr>
-          <tr><td data-label="खण्ड">D6</td><td data-label="विवरण">Lift Shaft</td><td data-label="रकम" class="num">३,१७,३७०</td></tr>
-          <tr class="total-row"><td colspan="2" data-label="कुल">D कुल जम्मा</td><td data-label="रकम" class="num">१,४३,८९,०७५</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> E. ईंटाको काम</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">E1 – बाहिरी 9" (25,000 ईंटा)</td><td data-label="रकम" class="num">९,४६,०००</td></tr>
-          <tr><td data-label="खण्ड">E2 – आन्तरिक 4.5" (15,000 ईंटा)</td><td data-label="रकम" class="num">६,१४,०००</td></tr>
-          <tr class="total-row"><td data-label="कुल">कुल</td><td data-label="रकम" class="num">१५,६०,०००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> F. प्लास्टरिङ</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">F1 – भित्री (1:4, 6mm)</td><td data-label="रकम" class="num">६,१२,०००</td></tr>
-          <tr><td data-label="खण्ड">F2 – बाहिरी (1:4, 12mm)</td><td data-label="रकम" class="num">३,८८,०००</td></tr>
-          <tr class="total-row"><td data-label="कुल">कुल</td><td data-label="रकम" class="num">१०,००,०००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> G. फ्लोरिङ</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">G1 – भुइँ तला Tile</td><td data-label="रकम" class="num">९,१६,५००</td></tr>
-          <tr><td data-label="खण्ड">G2 – Basement CC Floor</td><td data-label="रकम" class="num">२,५०,०००</td></tr>
-          <tr class="total-row"><td data-label="कुल">कुल</td><td data-label="रकम" class="num">११,६६,५००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> H. ढोका, झ्याल, शटर</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">H1 – Rolling Shutter (800 sq.ft)</td><td data-label="रकम" class="num">२,८०,०००</td></tr>
-          <tr><td data-label="खण्ड">H2 – MS Door (10 थान)</td><td data-label="रकम" class="num">८०,०००</td></tr>
-          <tr><td data-label="खण्ड">H3 – Aluminum Window (500 sq.ft)</td><td data-label="रकम" class="num">२,२५,०००</td></tr>
-          <tr><td data-label="खण्ड">H4 – Glass Door (100 sq.ft)</td><td data-label="रकम" class="num">८०,०००</td></tr>
-          <tr><td data-label="खण्ड">H5 – Hardware</td><td data-label="रकम" class="num">१,००,०००</td></tr>
-          <tr class="total-row"><td data-label="कुल">कुल</td><td data-label="रकम" class="num">७,६५,०००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> I. प्लम्बिङ र स्यानिटरी</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">CPVC + PVC Pipes</td><td data-label="रकम" class="num">२,५०,०००</td></tr>
-          <tr><td data-label="खण्ड">Water Tanks (UG + OH)</td><td data-label="रकम" class="num">२,००,०००</td></tr>
-          <tr><td data-label="खण्ड">Toilet Sets (6 सेट)</td><td data-label="रकम" class="num">१,५०,०००</td></tr>
-          <tr><td data-label="खण्ड">Septic Tank</td><td data-label="रकम" class="num">१,५०,०००</td></tr>
-          <tr><td data-label="खण्ड">Rain Water Harvesting</td><td data-label="रकम" class="num">१,००,०००</td></tr>
-          <tr><td data-label="खण्ड">Labor</td><td data-label="रकम" class="num">१,५०,०००</td></tr>
-          <tr class="total-row"><td data-label="कुल">कुल</td><td data-label="रकम" class="num">१०,००,०००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> J. विद्युतीय कार्य</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">Main + Sub Panels</td><td data-label="रकम" class="num">३,००,०००</td></tr>
-          <tr><td data-label="खण्ड">Wiring (Copper)</td><td data-label="रकम" class="num">३,००,०००</td></tr>
-          <tr><td data-label="खण्ड">LED Light Fittings (200)</td><td data-label="रकम" class="num">३,००,०००</td></tr>
-          <tr><td data-label="खण्ड">Switch & Socket</td><td data-label="रकम" class="num">१,५०,०००</td></tr>
-          <tr><td data-label="खण्ड">Earthing + Lightning</td><td data-label="रकम" class="num">१,३०,०००</td></tr>
-          <tr><td data-label="खण्ड">Diesel Generator 50 kVA</td><td data-label="रकम" class="num">८,००,०००</td></tr>
-          <tr><td data-label="खण्ड">Labor</td><td data-label="रकम" class="num">२,००,०००</td></tr>
-          <tr class="total-row"><td data-label="कुल">कुल</td><td data-label="रकम" class="num">२१,८०,०००</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> K–O. अन्य खण्डहरू</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>खण्ड</th><th>विवरण</th><th>रकम (रु.)</th></tr></thead>
-        <tbody>
-          <tr><td data-label="खण्ड">K</td><td data-label="विवरण">वाटरप्रुफिङ</td><td data-label="रकम" class="num">११,१४,१५०</td></tr>
-          <tr><td data-label="खण्ड">L</td><td data-label="विवरण">रंगरोगन</td><td data-label="रकम" class="num">१४,२०,०००</td></tr>
-          <tr><td data-label="खण्ड">M</td><td data-label="विवरण">लिफ्ट शाफ्ट फिनिशिङ</td><td data-label="रकम" class="num">१,४८,०००</td></tr>
-          <tr><td data-label="खण्ड">N</td><td data-label="विवरण">विविध</td><td data-label="रकम" class="num">३,२५,०००</td></tr>
-          <tr><td data-label="खण्ड">O</td><td data-label="विवरण">उपकरण र मशीनरी</td><td data-label="रकम" class="num">९,५०,०००</td></tr>
-          <tr class="total-row"><td colspan="2" data-label="कुल">K–O जम्मा</td><td data-label="रकम" class="num">३९,५७,१५०</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> P. Phase 1 कुल सारांश</div>
+    <div class="card-title"><span class="dot"></span> Phase 1 कुल सारांश</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>खण्ड</th><th>विवरण</th><th>रकम (रु.)</th></tr></thead>
@@ -1419,36 +1252,6 @@
   </div>
 </section>
 
-<!-- ============ 12. LEGAL ============ -->
-<section class="section reveal" id="s12">
-  <div class="section-header">
-    <div class="section-num">१२</div>
-    <div>
-      <div class="section-title">कानुनी पक्ष</div>
-      <div class="section-title-en">Legal & Regulatory</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> भवन निर्माण मापदण्ड २०७५</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>मापदण्ड</th><th>प्रावधान</th><th>यस परियोजनामा</th></tr></thead>
-        <tbody>
-          <tr><td data-label="मापदण्ड">ग्राउन्ड कभरेज</td><td data-label="प्रावधान">अधिकतम ६०%</td><td data-label="यस परियोजनामा">५,९५५ sq.ft</td></tr>
-          <tr><td data-label="मापदण्ड">FAR</td><td data-label="प्रावधान">व्यावसायिक १.५</td><td data-label="यस परियोजनामा">१४,८८७ sq.ft</td></tr>
-          <tr><td data-label="मापदण्ड">सेटब्याक</td><td data-label="प्रावधान">अगाडि ३ मि., छेउ २ मि.</td><td data-label="यस परियोजनामा">पालना</td></tr>
-          <tr><td data-label="मापदण्ड">पार्किङ</td><td data-label="प्रावधान">१,००० sq.ft भन्दा माथि</td><td data-label="यस परियोजनामा">भूमिगत</td></tr>
-          <tr><td data-label="मापदण्ड">Planning Permit</td><td data-label="प्रावधान">अनिवार्य</td><td data-label="यस परियोजनामा">आवेदन</td></tr>
-          <tr><td data-label="मापदण्ड">Rain Water Harvesting</td><td data-label="प्रावधान">अनिवार्य</td><td data-label="यस परियोजनामा">समावेश</td></tr>
-          <tr><td data-label="मापदण्ड">Septic Tank</td><td data-label="प्रावधान">अनिवार्य</td><td data-label="यस परियोजनामा">समावेश</td></tr>
-          <tr><td data-label="मापदण्ड">Fire Safety</td><td data-label="प्रावधान">१७ मिटर भन्दा अग्लो</td><td data-label="यस परियोजनामा">१५.५ मि. (लागू नहुने)</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
 <!-- ============ 14. RISK ============ -->
 <section class="section reveal" id="s14">
   <div class="section-header">
@@ -1459,171 +1262,34 @@
     </div>
   </div>
 
-  <!-- Mobile: Card Layout -->
   <div class="risk-list">
     <div class="risk-card">
       <div class="risk-card-head">
         <div class="risk-card-title">निर्माण लागत वृद्धि</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-high">उच्च</span>
-          <span class="pill pill-high">उच्च</span>
-        </div>
+        <div class="risk-card-pills"><span class="pill pill-high">उच्च</span><span class="pill pill-high">उच्च</span></div>
       </div>
       <div class="risk-card-body">१०–१५% कन्टिन्जेन्सी बजेट; चरणबद्ध निर्माण; सामग्रीको मूल्य अनुगमन</div>
     </div>
-
     <div class="risk-card">
       <div class="risk-card-head">
         <div class="risk-card-title">भाडावाला नपाउने</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-med">मध्यम</span>
-          <span class="pill pill-high">उच्च</span>
-        </div>
+        <div class="risk-card-pills"><span class="pill pill-med">मध्यम</span><span class="pill pill-high">उच्च</span></div>
       </div>
       <div class="risk-card-body">लचिलो भाडा दर; बहु-प्रयोग डिजाइन; प्रभावकारी मार्केटिङ</div>
     </div>
-
-    <div class="risk-card">
-      <div class="risk-card-head">
-        <div class="risk-card-title">नगरपालिका स्वीकृति ढिलाइ</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-med">मध्यम</span>
-          <span class="pill pill-high">उच्च</span>
-        </div>
-      </div>
-      <div class="risk-card-body">पूर्ण कागजात सहित आवेदन; वास्तुकार र इन्जिनियरको सहयोग</div>
-    </div>
-
     <div class="risk-card">
       <div class="risk-card-head">
         <div class="risk-card-title">पारिवारिक विवाद</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-med">मध्यम</span>
-          <span class="pill pill-high">उच्च</span>
-        </div>
+        <div class="risk-card-pills"><span class="pill pill-med">मध्यम</span><span class="pill pill-high">उच्च</span></div>
       </div>
       <div class="risk-card-body">स्पष्ट लिखित सम्झौता; पारदर्शी लेखा; नियमित बैठक</div>
     </div>
-
-    <div class="risk-card">
-      <div class="risk-card-head">
-        <div class="risk-card-title">भूमिगत पार्किङको जटिलता</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-high">उच्च</span>
-          <span class="pill pill-med">मध्यम</span>
-        </div>
-      </div>
-      <div class="risk-card-body">विस्तृत डिजाइन; अनुभवी ठेकेदार; उच्च गुणस्तरको वाटरप्रुफिङ</div>
-    </div>
-
     <div class="risk-card">
       <div class="risk-card-head">
         <div class="risk-card-title">माटोको अवस्था</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-med">मध्यम</span>
-          <span class="pill pill-high">उच्च</span>
-        </div>
+        <div class="risk-card-pills"><span class="pill pill-med">मध्यम</span><span class="pill pill-high">उच्च</span></div>
       </div>
       <div class="risk-card-body">अनिवार्य माटो परीक्षण; उपयुक्त जगको डिजाइन</div>
-    </div>
-
-    <div class="risk-card">
-      <div class="risk-card-head">
-        <div class="risk-card-title">ब्याज दर वृद्धि</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-med">मध्यम</span>
-          <span class="pill pill-med">मध्यम</span>
-        </div>
-      </div>
-      <div class="risk-card-body">निश्चित ब्याज दरको ऋण; वैकल्पिक स्रोतको खोजी</div>
-    </div>
-
-    <div class="risk-card">
-      <div class="risk-card-head">
-        <div class="risk-card-title">प्राकृतिक प्रकोप</div>
-        <div class="risk-card-pills">
-          <span class="pill pill-low">न्यून</span>
-          <span class="pill pill-high">उच्च</span>
-        </div>
-      </div>
-      <div class="risk-card-body">Construction All Risk बीमा; भूकम्प प्रतिरोधी डिजाइन</div>
-    </div>
-  </div>
-
-  <!-- Desktop: Table Layout -->
-  <div class="risk-table-desktop" style="display:none">
-    <div class="card" style="padding:0;overflow:hidden">
-      <div class="risk-row risk-head">
-        <div>जोखिम</div><div>सम्भावना</div><div>प्रभाव</div><div>न्यूनीकरण उपाय</div>
-      </div>
-      <div class="risk-row"><div><strong>निर्माण लागत वृद्धि</strong></div><div><span class="pill pill-high">उच्च</span></div><div><span class="pill pill-high">उच्च</span></div><div>१०–१५% कन्टिन्जेन्सी; चरणबद्ध निर्माण; सामग्री अनुगमन</div></div>
-      <div class="risk-row"><div><strong>भाडावाला नपाउने</strong></div><div><span class="pill pill-med">मध्यम</span></div><div><span class="pill pill-high">उच्च</span></div><div>लचिलो भाडा दर; बहु-प्रयोग डिजाइन; मार्केटिङ</div></div>
-      <div class="risk-row"><div><strong>नगरपालिका ढिलाइ</strong></div><div><span class="pill pill-med">मध्यम</span></div><div><span class="pill pill-high">उच्च</span></div><div>पूर्ण कागजात; वास्तुकार र इन्जिनियरको सहयोग</div></div>
-      <div class="risk-row"><div><strong>पारिवारिक विवाद</strong></div><div><span class="pill pill-med">मध्यम</span></div><div><span class="pill pill-high">उच्च</span></div><div>लिखित सम्झौता; पारदर्शी लेखा; नियमित बैठक</div></div>
-      <div class="risk-row"><div><strong>Basement जटिलता</strong></div><div><span class="pill pill-high">उच्च</span></div><div><span class="pill pill-med">मध्यम</span></div><div>विस्तृत डिजाइन; अनुभवी ठेकेदार; वाटरप्रुफिङ</div></div>
-      <div class="risk-row"><div><strong>माटोको अवस्था</strong></div><div><span class="pill pill-med">मध्यम</span></div><div><span class="pill pill-high">उच्च</span></div><div>अनिवार्य माटो परीक्षण; उपयुक्त जगको डिजाइन</div></div>
-      <div class="risk-row"><div><strong>ब्याज दर वृद्धि</strong></div><div><span class="pill pill-med">मध्यम</span></div><div><span class="pill pill-med">मध्यम</span></div><div>निश्चित ब्याज दरको ऋण; वैकल्पिक स्रोत</div></div>
-      <div class="risk-row"><div><strong>प्राकृतिक प्रकोप</strong></div><div><span class="pill pill-low">न्यून</span></div><div><span class="pill pill-high">उच्च</span></div><div>Construction All Risk बीमा; भूकम्प प्रतिरोधी डिजाइन</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 15. TIMELINE ============ -->
-<section class="section reveal" id="s15">
-  <div class="section-header">
-    <div class="section-num">१५</div>
-    <div>
-      <div class="section-title">समयतालिका</div>
-      <div class="section-title-en">Gantt Chart</div>
-    </div>
-  </div>
-
-  <div class="gantt">
-    <div class="gantt-grid">
-      <div class="gantt-head">कार्य</div>
-      <div class="gantt-head">वर्ष १</div>
-      <div class="gantt-head">वर्ष २</div>
-      <div class="gantt-head">वर्ष ३</div>
-      <div class="gantt-head">वर्ष ४</div>
-      <div class="gantt-head">वर्ष ५</div>
-      <div class="gantt-head">वर्ष ६</div>
-
-      <div class="gantt-label">जग्गा एकीकरण + कम्पनी दर्ता</div>
-      <div><div class="gantt-bar navy">█</div></div>
-      <div></div><div></div><div></div><div></div><div></div>
-
-      <div class="gantt-label">नक्सा पास र स्वीकृति</div>
-      <div><div class="gantt-bar gold">█</div></div>
-      <div></div><div></div><div></div><div></div><div></div>
-
-      <div class="gantt-label">Phase 1: Basement + Ground</div>
-      <div><div class="gantt-bar">██</div></div>
-      <div></div><div></div><div></div><div></div><div></div>
-
-      <div class="gantt-label">Phase 1 भाडा सुरु</div>
-      <div></div>
-      <div><div class="gantt-bar violet">█</div></div>
-      <div></div><div></div><div></div><div></div>
-
-      <div class="gantt-label">Phase 2: 1st + 2nd Floor</div>
-      <div></div><div></div>
-      <div><div class="gantt-bar orange">█</div></div>
-      <div><div class="gantt-bar orange">█</div></div>
-      <div></div><div></div>
-
-      <div class="gantt-label">Phase 2 भाडा सुरु</div>
-      <div></div><div></div><div></div><div></div>
-      <div><div class="gantt-bar pink">█</div></div>
-      <div></div>
-
-      <div class="gantt-label">Phase 3: 3rd + 4th Floor</div>
-      <div></div><div></div><div></div><div></div>
-      <div><div class="gantt-bar navy">█</div></div>
-      <div><div class="gantt-bar navy">█</div></div>
-
-      <div class="gantt-label">पूर्ण भवन सञ्चालन</div>
-      <div></div><div></div><div></div><div></div><div></div>
-      <div><div class="gantt-bar gold">█</div></div>
     </div>
   </div>
 </section>
@@ -1641,29 +1307,12 @@
   <div class="card">
     <div class="card-title"><span class="dot"></span> निष्कर्ष</div>
     <p style="color:var(--muted)">
-      यो व्यावसायिक भवन विकास परियोजना कागेश्वरी मनोहरा नगरपालिका, वडा नं. ७ को मुलपानी–साँखु सडक क्षेत्रमा अवस्थित करिब २९ आना जग्गामा ५ तल्ले पूर्ण व्यावसायिक भवन निर्माण गर्ने एक व्यवहार्य र आकर्षक योजना हो। चरणबद्ध निर्माण रणनीतिले सुरुवाती पूँजी लगानीलाई व्यवस्थापनयोग्य बनाउँदै आत्म-वित्तीय निर्माणलाई सम्भव तुल्याउनेछ।
+      यो व्यावसायिक भवन विकास परियोजना कागेश्वरी मनोहरा नगरपालिका, वडा नं. ७ को मुलपानी–साँखु सडक क्षेत्रमा अवस्थित करिब २९ आना जग्गामा ५ तल्ले पूर्ण व्यावसायिक भवन निर्माण गर्ने एक व्यवहार्य र आकर्षक योजना हो।
     </p>
   </div>
 
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> सिफारिसहरू</div>
-    <ol style="padding-left:20px;color:var(--muted);font-size:13.5px;line-height:2">
-      <li>सबै प्लटहरू मालपोतमा एकीकृत (Ekikrit) गर्नुहोस्।</li>
-      <li>Private Limited Company दर्ता गर्नुहोस्।</li>
-      <li>वकिल मार्फत Joint Venture Agreement तयार गर्नुहोस्।</li>
-      <li>निर्माण सुरु गर्नु अघि अनिवार्य माटो परीक्षण गराउनुहोस्।</li>
-      <li>दर्ता भएको वास्तुकार र इन्जिनियर नियुक्त गर्नुहोस्।</li>
-      <li>नक्सा पासको लागि नगरपालिकासँग नियमित समन्वय गर्नुहोस्।</li>
-      <li>बैंक ऋण र नगद लगानीको स्पष्ट वित्तीय योजना बनाउनुहोस्।</li>
-      <li>भाडा आयबाट पुनः लगानी गर्ने रणनीति पालना गर्नुहोस्।</li>
-      <li>निर्माणको समयमा Construction All Risk बीमा गराउनुहोस्।</li>
-    </ol>
-  </div>
-
   <div class="disclaimer">
-    <strong>अस्वीकरण (Disclaimer):</strong> यो प्रपोजल एक conceptual योजना हो। आधिकारिक नक्सा पास र निर्माणको लागि दर्ता भएको वास्तुकार र इन्जिनियरबाट प्रमाणित गर्नुपर्नेछ। यसमा उल्लेख गरिएका सबै तथ्याङ्क, लागत अनुमान, र समयतालिका प्रारम्भिक (Preliminary) हुन् र वास्तविक निर्माणको क्रममा परिवर्तन हुन सक्छन्। यो प्रस्ताव कुनै पनि कानुनी वा वित्तीय सल्लाहको रूपमा लिनु हुँदैन। निर्माण सुरु गर्नु अघि सम्बन्धित निकायबाट आवश्यक स्वीकृति र प्रमाणीकरण अनिवार्य रूपमा प्राप्त गर्नुपर्नेछ।
-    <br><br>
-    <strong>विशेष नोट:</strong> यो BOQ (Bill of Quantities) प्रारम्भिक अनुमान हो। वास्तविक लागत निर्माण सामग्रीको बजार मूल्य, श्रम लागत, मौसम, र अन्य कारकहरूमा निर्भर गर्दछ। विस्तृत BOQ दर्ता भएको क्वान्टिटी सर्वेयरबाट प्रमाणित गराउनुपर्नेछ।
+    <strong>अस्वीकरण (Disclaimer):</strong> यो प्रपोजल एक conceptual योजना हो। आधिकारिक नक्सा पास र निर्माणको लागि दर्ता भएको वास्तुकार र इन्जिनियरबाट प्रमाणित गर्नुपर्नेछ। यसमा उल्लेख गरिएका सबै तथ्याङ्क, लागत अनुमान, र समयतालिका प्रारम्भिक (Preliminary) हुन् र वास्तविक निर्माणको क्रममा परिवर्तन हुन सक्छन्।
   </div>
 </section>
 
@@ -1677,7 +1326,7 @@
       </div>
       <div>
         <h3>तयार गरिएको</h3>
-        <p>बहुविषयक व्यावसायिक टोलीद्वारा<br>रियल इस्टेट सल्लाहकार, वास्तुकार,<br>संरचनात्मक इन्जिनियर, सिभिल इन्जिनियर,<br>MEP इन्जिनियर, क्वान्टिटी सर्वेयर,<br>वित्तीय विश्लेषक, कानुनी सल्लाहकार</p>
+        <p>बहुविषयक व्यावसायिक टोलीद्वारा<br>रियल इस्टेट, वास्तुकार, इन्जिनियर,<br>MEP, QS, वित्तीय र कानुनी सल्लाहकार</p>
       </div>
       <div>
         <h3>प्रस्तुतीकरणको लागि</h3>
@@ -1752,14 +1401,12 @@
 
   sections.forEach(s => navObserver.observe(s));
 
-  // ============ AUTO DATA-LABELS FOR TABLES ============
-  // Automatically add data-label attributes to tds based on thead
+  // ============ AUTO DATA-LABELS ============
   document.querySelectorAll('table').forEach(table => {
     const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
     if(headers.length === 0) return;
     table.querySelectorAll('tbody tr').forEach(tr => {
       const cells = tr.querySelectorAll('td');
-      // Skip if it's a colspan row
       if(cells.length === 1 && cells[0].hasAttribute('colspan')) return;
       cells.forEach((td, i) => {
         if(!td.hasAttribute('data-label') && headers[i]){
@@ -1769,16 +1416,14 @@
     });
   });
 
-  // ============ CHART DEFAULTS ============
+  // ============ CHARTS ============
   Chart.defaults.font.family = "'Mukta','Inter',sans-serif";
   Chart.defaults.font.size = 10;
   Chart.defaults.color = '#5a6b80';
   Chart.defaults.plugins.legend.labels.usePointStyle = true;
   Chart.defaults.plugins.legend.labels.boxWidth = 8;
   Chart.defaults.plugins.legend.labels.padding = 10;
-  Chart.defaults.plugins.legend.labels.font = { size: 11 };
 
-  // ============ 1. PHASE COST DOUGHNUT ============
   new Chart(document.getElementById('chartPhaseCost'), {
     type: 'doughnut',
     data: {
@@ -1786,44 +1431,28 @@
       datasets: [{
         data: [340.83, 154, 220],
         backgroundColor: ['#0d9488', '#c9a227', '#7c3aed'],
-        borderColor: '#fff',
-        borderWidth: 3,
-        hoverOffset: 8
+        borderColor: '#fff', borderWidth: 3, hoverOffset: 8
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '60%',
-      plugins: {
-        legend: { position: 'bottom' },
-        tooltip: {
-          callbacks: { label: ctx => ctx.label + ' — रु. ' + ctx.parsed + ' लाख' }
-        }
-      }
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: { legend: { position: 'bottom' } }
     }
   });
 
-  // ============ 2. ROI BAR ============
   new Chart(document.getElementById('chartROI'), {
     type: 'bar',
     data: {
       labels: ['Conservative', 'Base', 'Optimistic'],
       datasets: [{
-        label: 'ROI (%)',
-        data: [8.4, 11.2, 14.0],
+        label: 'ROI (%)', data: [8.4, 11.2, 14.0],
         backgroundColor: ['#0f2942', '#0d9488', '#c9a227'],
-        borderRadius: 8,
-        barThickness: 40
+        borderRadius: 8, barThickness: 40
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => 'ROI: ' + ctx.parsed.y + '%' } }
-      },
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
       scales: {
         y: { beginAtZero: true, max: 16, ticks: { callback: v => v + '%' }, grid: { color: '#eef2f7' } },
         x: { grid: { display: false } }
@@ -1831,26 +1460,19 @@
     }
   });
 
-  // ============ 3. PHASE BAR ============
   new Chart(document.getElementById('chartPhaseBar'), {
     type: 'bar',
     data: {
       labels: ['Phase 1', 'Phase 2', 'Phase 3'],
       datasets: [{
-        label: 'लागत',
-        data: [340.83, 154, 220],
+        label: 'लागत', data: [340.83, 154, 220],
         backgroundColor: ['#0d9488', '#c9a227', '#7c3aed'],
-        borderRadius: 8,
-        barThickness: 50
+        borderRadius: 8, barThickness: 50
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => 'रु. ' + ctx.parsed.y + ' लाख' } }
-      },
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
       scales: {
         y: { beginAtZero: true, ticks: { callback: v => v + 'L' }, grid: { color: '#eef2f7' } },
         x: { grid: { display: false } }
@@ -1858,7 +1480,6 @@
     }
   });
 
-  // ============ 4. INCOME ============
   new Chart(document.getElementById('chartIncome'), {
     type: 'bar',
     data: {
@@ -1869,12 +1490,8 @@
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'bottom' },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': रु. ' + ctx.parsed.y + ' लाख' } }
-      },
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
       scales: {
         y: { beginAtZero: true, ticks: { callback: v => v + 'L' }, grid: { color: '#eef2f7' } },
         x: { grid: { display: false } }
@@ -1882,33 +1499,21 @@
     }
   });
 
-  // ============ 5. PAYBACK LINE ============
   new Chart(document.getElementById('chartPayback'), {
     type: 'line',
     data: {
       labels: ['Conservative', 'Base', 'Optimistic'],
       datasets: [{
-        label: 'Payback (वर्ष)',
-        data: [11.9, 8.9, 7.1],
-        borderColor: '#c9a227',
-        backgroundColor: 'rgba(201,162,39,.15)',
-        borderWidth: 3,
-        fill: true,
-        tension: 0.35,
-        pointBackgroundColor: '#0f2942',
-        pointBorderColor: '#fff',
-        pointBorderWidth: 2,
-        pointRadius: 6,
-        pointHoverRadius: 8
+        label: 'Payback (वर्ष)', data: [11.9, 8.9, 7.1],
+        borderColor: '#c9a227', backgroundColor: 'rgba(201,162,39,.15)',
+        borderWidth: 3, fill: true, tension: 0.35,
+        pointBackgroundColor: '#0f2942', pointBorderColor: '#fff',
+        pointBorderWidth: 2, pointRadius: 6, pointHoverRadius: 8
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => 'Payback: ' + ctx.parsed.y + ' वर्ष' } }
-      },
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
       scales: {
         y: { beginAtZero: true, ticks: { callback: v => v + ' वर्ष' }, grid: { color: '#eef2f7' } },
         x: { grid: { display: false } }
@@ -1916,7 +1521,7 @@
     }
   });
 
-  // ============ PRINT HANDLING ============
+  // ============ PRINT ============
   window.addEventListener('beforeprint', () => {
     document.querySelectorAll('canvas').forEach(c => {
       c.style.maxWidth = '100%';
@@ -1924,7 +1529,7 @@
     });
   });
 
-  // ============ SMOOTH NAV SCROLL ============
+  // ============ SMOOTH NAV ============
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
